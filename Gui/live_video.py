@@ -6,8 +6,8 @@ from flask import Blueprint, Response
 live_video_app = Blueprint('live_video_app', __name__)
 
 # Define paths to your model and label files
-MODEL_PATH = "custom_model_lite/detect.tflite"
-LABEL_PATH = "custom_model_lite/labelmap.txt"
+MODEL_PATH = "MobileNet_640/custom_model_lite/detect.tflite"
+LABEL_PATH = "MobileNet_640/custom_model_lite/labelmap.txt"
 
 # Load the TFLite model
 interpreter = Interpreter(model_path=MODEL_PATH)

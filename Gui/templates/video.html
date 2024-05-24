@@ -65,9 +65,9 @@
     <form id="uploadForm" method="post" enctype="multipart/form-data">
         <label for="modelType">Select Model:</label>
         <select id="modelType" name="modelType">
-            <option value="multi_class">Multi Class Detection</option>
-            <option value="empty_detection">Empty Detection</option>
-            <option value="unorganised_detection">Unorganised Detection</option>
+            <option value="multi_class">SSD ResNet50 V1 FPN 640x640 (RetinaNet50)</option>
+            <option value="empty_detection">SSD MobileNet V2 FPNLite 640x640 (batch size 16)</option>
+            <option value="unorganised_detection">SSD MobileNet V2 FPNLite 320x320</option>
         </select>
         <input type="file" name="file" id="videoInput" accept="video/*" onchange="previewVideo()">
         <button type="submit">Upload Video</button>

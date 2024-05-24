@@ -79,14 +79,14 @@ def upload_and_detect():
     if request.method == 'POST':
         model_type = request.form.get('modelType')
         if model_type == 'multi_class':
-            MODEL_PATH = "custom_model_lite/detect.tflite"
-            LABEL_PATH = "custom_model_lite/labelmap.txt"
+            MODEL_PATH = "ResNet50_640/custom_model_lite/detect.tflite"
+            LABEL_PATH = "ResNet50_640/custom_model_lite/labelmap.txt"
         elif model_type == 'empty_detection':
-            MODEL_PATH = "custom_model_lite_empty/empty_detection/detect.tflite"
-            LABEL_PATH = "custom_model_lite_empty/empty_detection/labelmap.txt"
+            MODEL_PATH = "MobileNet_640/custom_model_lite/detect.tflite"
+            LABEL_PATH = "MobileNet_640/custom_model_lite/labelmap.txt"
         elif model_type == 'unorganised_detection':
-            MODEL_PATH = "custom_model_lite_unorganised/unorganised/model.tflite"
-            LABEL_PATH = "custom_model_lite_unorganised/unorganised/labelmap.txt"
+            MODEL_PATH = "MobileNet_320/custom_model_lite/detect.tflite"
+            LABEL_PATH = "MobileNet_320/custom_model_lite/labelmap.txt"
         else:
             return jsonify({"error": "Invalid model type selected"}), 400
 
@@ -122,14 +122,14 @@ def upload_video():
     if request.method == 'POST':
         model_type = request.form.get('modelType')
         if model_type == 'multi_class':
-            MODEL_PATH = "custom_model_lite/detect.tflite"
-            LABEL_PATH = "custom_model_lite/labelmap.txt"
+            MODEL_PATH = "ResNet50_640/custom_model_lite/detect.tflite"
+            LABEL_PATH = "ResNet50_640/custom_model_lite/labelmap.txt"
         elif model_type == 'empty_detection':
-            MODEL_PATH = "custom_model_lite_empty/empty_detection/detect.tflite"
-            LABEL_PATH = "custom_model_lite_empty/empty_detection/labelmap.txt"
+            MODEL_PATH = "MobileNet_640/custom_model_lite/detect.tflite"
+            LABEL_PATH = "MobileNet_640/custom_model_lite/labelmap.txt"
         elif model_type == 'unorganised_detection':
-            MODEL_PATH = "custom_model_lite_unorganised/unorganised/model.tflite"
-            LABEL_PATH = "custom_model_lite_unorganised/unorganised/labelmap.txt"
+            MODEL_PATH = "MobileNet_320/custom_model_lite/detect.tflite"
+            LABEL_PATH = "MobileNet_320/custom_model_lite/labelmap.txt"
         else:
             return jsonify({"error": "Invalid model type selected"}), 400
 
