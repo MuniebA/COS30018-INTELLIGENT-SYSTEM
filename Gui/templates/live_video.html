@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+    h1, h2, h3 {
+        color: #333;
+    }
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .content p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+    .content img {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+        height: auto;
+    }
+    .header {
+        font-size: 24px;
+        color: #2A5783;
+    }
+    .sub-header {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <h1 class="header">Live Video Detection</h1>
+    <p class="sub-header">Real-time object detection using your webcam.</p>
+    <div class="content">
+        <p>This live feature will be more useful when the app is launched and is accessible through mobile web view. Some users would prefer to view the detection live rather than taking and uploading an image or video to get the detection.</p>
+        <img src="{{ url_for('live_video_app.video_feed') }}" width="100%">
+    </div>
+</div>
+{% endblock %}

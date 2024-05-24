@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+    h1, h2, h3 {
+        color: #333;
+    }
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input[type=file], button[type=submit] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    button[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button[type=submit]:hover {
+        background-color: #45a049;
+    }
+    video {
+        display: block; /* Makes the video block level for margin auto to work */
+        margin: 20px auto; /* Centers the video horizontally */
+        max-width: 100%; /* Ensures the video does not exceed its container width */
+        height: auto; /* Maintains aspect ratio */
+    }
+    .results {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header {
+        font-size: 24px;
+        color: #2A5783;
+    }
+    .sub-header {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <h1 class="header">Video Detection</h1>
+    <p class="sub-header">The project is capable of helping maintain shelf organization even through video surveillance, which can be linked to supermarket's already existing hardware (surveillance cameras).</p>
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        <label for="modelType">Select Model:</label>
+        <select id="modelType" name="modelType">
+            <option value="multi_class">Multi Class Detection</option>
+            <option value="empty_detection">Empty Detection</option>
+            <option value="unorganised_detection">Unorganised Detection</option>
+        </select>
+        <input type="file" name="file" id="videoInput" accept="video/*" onchange="previewVideo()">
+        <button type="submit">Upload Video</button>
+    </form>
+    <div>
+        <h3 class="header">Preview:</h3>
+        <video id="videoPreview" controls hidden></video>
+    </div>
+    <div class="results">
+        <h3 class="header">Processed Video:</h3>
+        <video id="processedVideo" controls hidden></video>
+    </div>
+</div>
+
+<script>
+document.getElementById('uploadForm').onsubmit = function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    console.log('Form submission intercepted.');
+    fetch('/video', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response received:', data);
+        const processedVideo = document.getElementById('processedVideo');
+        processedVideo.src = data.video_url;
+        processedVideo.hidden = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+
+function previewVideo() {
+    const fileInput = document.getElementById('videoInput');
+    const videoPreview = document.getElementById('videoPreview');
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            videoPreview.src = e.target.result;
+            videoPreview.hidden = false;
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
+</script>
+{% endblock %}
